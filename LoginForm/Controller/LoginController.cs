@@ -7,15 +7,24 @@ using System.Threading.Tasks;
 
 namespace LoginForm.Controller
 {
-    internal class LoginController
+    internal static class LoginController
     {
-        public List<User> GetAllUsers()
+        static List<User> users = new List<User>()
         {
-            List<User> users = new List<User>()
+            new User("user1", "123"),
+            new User("user2", "321")
+        };
+
+        public static void AddUser(User user)
+        {
+            if (user.Username != string.Empty || user != null)
             {
-                new User("user1", "123"),
-                new User("user2", "321")
-            };
+                users.Add(user);
+            }
+        }
+
+        public static List<User> GetAllUsers()
+        {
             return users;
         }
     }

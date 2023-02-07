@@ -13,7 +13,6 @@ namespace LoginForm.View
 {
     public partial class LoginView : Form
     {
-        LoginController loginController = new LoginController();
         public LoginView()
         {
             InitializeComponent();
@@ -23,7 +22,7 @@ namespace LoginForm.View
         {
             string username = txtUsername.Text;
             string password = txtPassword.Text;
-            var users = loginController.GetAllUsers();
+            var users = LoginController.GetAllUsers();
             bool correctUsername = false;
             bool correctPassword = false;
             foreach (var item in users)
@@ -55,6 +54,13 @@ namespace LoginForm.View
             {
                 MessageBox.Show("Wrong username");
             }
+        }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            RegisterView registerView = new RegisterView();
+            this.Hide();
+            registerView.Show();
         }
     }
 }
