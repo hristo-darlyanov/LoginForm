@@ -13,6 +13,8 @@ namespace LoginForm.View
 {
     public partial class LoginView : Form
     {
+        LoginController loginController = new LoginController();
+
         public LoginView()
         {
             InitializeComponent();
@@ -22,7 +24,7 @@ namespace LoginForm.View
         {
             string username = txtUsername.Text;
             string password = txtPassword.Text;
-            var users = LoginController.GetAllUsers();
+            var users = loginController.ReadAllUsers();
             bool correctUsername = false;
             bool correctPassword = false;
             foreach (var item in users)

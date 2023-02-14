@@ -14,6 +14,7 @@ namespace LoginForm.View
 {
     public partial class RegisterView : Form
     {
+        LoginController loginController = new LoginController();
         public RegisterView()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace LoginForm.View
         {
             string username = txtUsername.Text;
             string password = txtPassword.Text;
-            LoginController.AddUser(new User(username, password));
+            loginController.CreateUser(new User(username, password));
             MainPageView mainPageView = new MainPageView();
             this.Hide();
             mainPageView.Show();

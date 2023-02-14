@@ -1,31 +1,37 @@
 ﻿using LoginForm.Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LoginForm.Controller
 {
-    internal static class LoginController
+    internal class LoginController
     {
-        static List<User> users = new List<User>()
+        public void CreateUser(User user)
         {
-            new User("user1", "123"),
-            new User("user2", "321")
-        };
-
-        public static void AddUser(User user)
-        {
-            if (user.Username != string.Empty || user != null)
+            using (NavigationDBEntities db = new NavigationDBEntities())
             {
-                users.Add(user);
+                var lastUser = db.User.ToList().LastOrDefault();
+                if (lastUser == null)
+                {
+                    lastUser = new User();
+                    lastUser.Id = 0;
+                }
+                user.Id = lastUser.Id + 1;
+                db.User.Add(user);
+                db.SaveChanges();
             }
         }
 
-        public static List<User> GetAllUsers()
+        public List<User> ReadAllUsers()
         {
-            return users;
+            using (NavigationDBEntities db = new NavigationDBEntities())
+            {
+                return db.User.ToList();
+            }
         }
     }
 }
