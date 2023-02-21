@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.navigationDBDataSet = new LoginForm.NavigationDBDataSet();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -42,10 +40,17 @@
             this.lblUsername = new System.Windows.Forms.Label();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.userBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvUsers
@@ -53,25 +58,14 @@
             this.dgvUsers.AutoGenerateColumns = false;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
             this.usernameDataGridViewTextBoxColumn,
             this.passwordDataGridViewTextBoxColumn});
-            this.dgvUsers.DataSource = this.userBindingSource1;
+            this.dgvUsers.DataSource = this.userBindingSource2;
             this.dgvUsers.Location = new System.Drawing.Point(12, 12);
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.Size = new System.Drawing.Size(405, 178);
             this.dgvUsers.TabIndex = 0;
-            // 
-            // usernameDataGridViewTextBoxColumn
-            // 
-            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
-            this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
-            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
-            // 
-            // passwordDataGridViewTextBoxColumn
-            // 
-            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
-            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
-            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
             // 
             // userBindingSource1
             // 
@@ -150,11 +144,58 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(507, 227);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(127, 42);
+            this.btnDelete.TabIndex = 8;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Location = new System.Drawing.Point(358, 227);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(122, 42);
+            this.btnUpdate.TabIndex = 7;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // userBindingSource2
+            // 
+            this.userBindingSource2.DataSource = typeof(LoginForm.Model.User);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // usernameDataGridViewTextBoxColumn
+            // 
+            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
+            this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
+            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
+            // 
+            // passwordDataGridViewTextBoxColumn
+            // 
+            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
+            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
+            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            // 
             // MainPageView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 283);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.lblUsername);
@@ -169,6 +210,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navigationDBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,8 +222,6 @@
         private NavigationDBDataSet navigationDBDataSet;
         private System.Windows.Forms.BindingSource userBindingSource;
         private NavigationDBDataSetTableAdapters.UserTableAdapter userTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource userBindingSource1;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtPassword;
@@ -189,5 +229,11 @@
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource userBindingSource2;
     }
 }

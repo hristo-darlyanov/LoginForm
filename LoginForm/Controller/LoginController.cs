@@ -33,5 +33,33 @@ namespace LoginForm.Controller
                 return db.User.ToList();
             }
         }
+
+        public void DeleteUser(int id)
+        {
+            using(NavigationDBEntities db = new NavigationDBEntities())
+            {
+                var userToDelete = db.User.Where(u => u.Id == id).FirstOrDefault();
+                if (userToDelete != null)
+                {
+                    db.User.Remove(userToDelete);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public void UpdateUser(int id, User user)
+        {
+            using(NavigationDBEntities db = new NavigationDBEntities())
+            {
+                var userToUpdate = db.User.Where(u => u.Id == id).FirstOrDefault();
+                if (userToUpdate != null)
+                {
+                    userToUpdate.Id = id;
+                    userToUpdate.Username = user.Username;
+                    userToUpdate.Password = user.Password;
+                    db.SaveChanges();
+                }
+            }
+        }
     }
 }
