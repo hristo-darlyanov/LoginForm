@@ -34,5 +34,24 @@ namespace LoginForm.View
         {
             RefreshData();
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dgvUsers.CurrentRow;
+            int id = int.Parse(row.Cells[0].Value.ToString());
+            User user = new User();
+            user.Username = txtUsername.Text;
+            user.Password = txtPassword.Text;
+            loginController.UpdateUser(id, user);
+            RefreshData();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dgvUsers.CurrentRow;
+            int id = int.Parse(row.Cells[0].Value.ToString());
+            loginController.DeleteUser(id);
+            RefreshData();
+        }
     }
 }
